@@ -80,4 +80,19 @@ extern void changeCircular(linkedList* circularList, char oldElem, char newElem)
 extern void freeCircular(linkedList* circularList);
 //单循环链表功能测试
 extern void TestCircular();
+
+//双向链表节点设计
+typedef struct _TwoNode {
+	struct _TwoNode* pre;
+	char elem;
+	struct _TwoNode* next;
+}twoNode;
+
+//双向链表数据结构封装
+typedef struct _TwoLinkedList {
+	twoNode* head;
+	twoNode* last;
+	int size;
+}twoLinkedList;
+
 #endif

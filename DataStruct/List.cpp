@@ -409,4 +409,22 @@ void TestCircular() {
 	printList(&circularList);
 }
 
-//
+//双向链表基本操作实现
+
+//双向链表初始化
+void InitTwoList(twoLinkedList* twoList) {
+	twoList->head = NULL;
+	twoList->last = NULL;
+	twoList->size = 0;
+}
+
+void addTwoList(twoLinkedList* twoList,char elem) {
+	twoNode* p = (twoNode*)malloc(sizeof(twoNode));
+	p->next = NULL;
+	if (twoList->head->next == NULL) {
+		twoList->head->next = p;
+	}
+	p->pre = twoList->last;
+	twoList->last = p;
+	twoList->size++;
+}
