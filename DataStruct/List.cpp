@@ -261,7 +261,7 @@ void changeListIndex(linkedList* list, int index, char elem) {
 	}
 	linkNode* h = list->head;
 	int i = 0;
-	while (h != NULL) {
+	while (h != NULL || h != list->head) {
 		if (i == index) {
 			h->elem = elem;
 			break;
@@ -273,14 +273,14 @@ void changeListIndex(linkedList* list, int index, char elem) {
 
 void changeListElem(linkedList* list, char oldElem, char newElem) {
 	linkNode* h = list->head;
-	while (h != NULL) {
+	while (h != NULL || h != list->head) {
 		if (h->elem == oldElem) {
 			h->elem = newElem;
 			break;
 		}
 		h = h->next;
 	}
-	if (h == NULL) {
+	if (h == NULL || h == list->head) {
 		printf("元素%c不在链表中！", oldElem);
 	}
 }
@@ -288,7 +288,7 @@ void changeListElem(linkedList* list, char oldElem, char newElem) {
 int indexOf(linkedList* list, char elem) {
 	int i = 0, index = -1;
 	linkNode* h = list->head;
-	for (; h != NULL; h = h->next) {
+	for (; h != NULL || h != list->head ; h = h->next) {
 		if (h->elem == elem) {
 			index = i;
 			break;
@@ -345,15 +345,43 @@ void TestList() {
 //初始化单循环链表
 void InitCircularLinkedList(linkedList* circularLinkedList) {
 	circularLinkedList->head = NULL;
-	circularLinkedList->last = circularLinkedList->head;
+	circularLinkedList->last = NULL;
 	circularLinkedList->size = 0;
 }
 
+//向单循环链表中添加数据
 void addCircular(linkedList* circularList, int index, char elem) {
 	addLink(circularList, index, elem);
-	circularList->last = circularList->head;
+	circularList->last->next = circularList->head;
 }
 
+void deleteCircular(linkedList* circularList, int index) {
+	deleteListIndex(circularList, index);
+	if (index == 0 || index == circularList->size) {
+		circularList->last->next = circularList->head;
+	}
+}
+
+void deleteCircular(linkedList* circularList, char elem) {
+	deleteListElem(circularList, elem);
+	circularList->last->next = circularList->head;
+}
+
+void changeCircular(linkedList* circularList, int index, char elem) {
+	changeListIndex(circularList, index, elem);
+}
+
+void changeCircular(linkedList* circularList, char oldElem, char newElem) {
+	changeListElem(circularList, oldElem, newElem);
+}
+
+void freeCircular(linkedList* circularList) {
+	circularList->last = NULL;
+	freeList(circularList);
+	circularList = NULL;
+}
+
+//单循环链表功能测试
 void TestCircular() {
 	linkedList circularList;
 	InitCircularLinkedList(&circularList);

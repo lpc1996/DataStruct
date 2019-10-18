@@ -63,7 +63,21 @@ extern void deleteListElem(linkedList* list, char elem);
 extern void changeListElem(linkedList* list, char oldElem, char newElem);
 
 //单循环链表
+
+//初始化单循环链表
 extern void InitCircularLinkedList(linkedList* circularLinkedList);
+//向单循环链表中添加数据
 extern void addCircular(linkedList* circularList, int index, char elem);
+//删除单循环链表中index位置的元素
+extern void deleteCircular(linkedList* circularList, int index);
+//删除单循环链表中值为elem的元素
+extern void deleteCircular(linkedList* circularList, char elem);
+//将单循环链表中index位置的元素修改为elem
+extern void changeCircular(linkedList* circularList, int index, char elem);
+//将单循环链表中值为oldElem的元素修改为newElem
+extern void changeCircular(linkedList* circularList, char oldElem, char newElem);
+//释放单循环链表所使用的的存储空间并删除单循环链表
+extern void freeCircular(linkedList* circularList);
+//单循环链表功能测试
 extern void TestCircular();
 #endif
