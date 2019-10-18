@@ -5,7 +5,28 @@
 
 int main()
 {
-	TestList();
+	int choice = - 1;
+	cout << "数据结构实现" << endl;
+	cout << "1：顺序表实现    2：单链表实现    0：退出" << endl;
+	while (1) {
+		cout << "请输入一个整数以选择功能：";
+		cin >> choice;
+		if (choice == 0) {
+			break;
+		}
+		switch (choice) {
+		case 1:
+			TestTable();
+			break;
+		case 2:
+			TestList();
+			break;
+		default:
+			cout << "输入的数字非法，请重新输入！";
+			break;
+		}
+	}
+	
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
