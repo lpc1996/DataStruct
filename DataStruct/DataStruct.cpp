@@ -7,7 +7,7 @@ int main()
 {
 	int choice = - 1;
 	cout << "数据结构实现" << endl;
-	cout << "1：顺序表实现    2：单链表实现    0：退出" << endl;
+	cout << "1：顺序表实现    2：单链表实现    3：单循环链表实现    0：退出" << endl;
 	while (1) {
 		cout << "请输入一个整数以选择功能：";
 		cin >> choice;
@@ -20,6 +20,9 @@ int main()
 			break;
 		case 2:
 			TestList();
+			break;
+		case 3:
+			TestCircular();
 			break;
 		default:
 			cout << "输入的数字非法，请重新输入！";

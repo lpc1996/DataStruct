@@ -33,7 +33,7 @@ Table addTable(Table t, int index, int elem) {
 			printf("存储空间分配失败！");
 			return t;
 		}
-		t.size + Size;
+		t.size = t.size + Size;
 	}
 	//插入操作，需要从要插入的位置开始，将后面的所有元素后移
 	int i = t.length;
@@ -162,7 +162,7 @@ void addLink(linkedList* list, int index, char elem) {
 	else {
 		linkNode* h = list->head;
 		int i = 0;
-		while (h != NULL) {
+		while (i < list->size) {
 			if (i == index) {
 				link->next = h->next;
 				h->next = link;
@@ -177,9 +177,11 @@ void addLink(linkedList* list, int index, char elem) {
 void printList(linkedList* list) {
 	printf("\n链表长度为：%d\n", list->size);
 	linkNode* h = list->head;
-	while (h != NULL) {
+	int i = 0;
+	while (i < list->size) {
 		printf("%c ", h->elem);
 		h = h->next;
+		i++;
 	}
 	printf("\n");
 }
@@ -339,3 +341,24 @@ void TestList() {
 	printList(&list);
 	freeList(&list);
 }
+
+//初始化单循环链表
+void InitCircularLinkedList(linkedList* circularLinkedList) {
+	circularLinkedList->head = NULL;
+	circularLinkedList->last = circularLinkedList->head;
+	circularLinkedList->size = 0;
+}
+
+void addCircular(linkedList* circularList, int index, char elem) {
+	addLink(circularList, index, elem);
+	circularList->last = circularList->head;
+}
+
+void TestCircular() {
+	linkedList circularList;
+	InitCircularLinkedList(&circularList);
+	addCircular(&circularList, 0, 'a');
+	printList(&circularList);
+}
+
+//

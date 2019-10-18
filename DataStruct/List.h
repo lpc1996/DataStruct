@@ -62,4 +62,8 @@ extern void deleteListElem(linkedList* list, char elem);
 //修改制定元素为指定值
 extern void changeListElem(linkedList* list, char oldElem, char newElem);
 
+//单循环链表
+extern void InitCircularLinkedList(linkedList* circularLinkedList);
+extern void addCircular(linkedList* circularList, int index, char elem);
+extern void TestCircular();
 #endif
