@@ -376,16 +376,36 @@ void changeCircular(linkedList* circularList, char oldElem, char newElem) {
 }
 
 void freeCircular(linkedList* circularList) {
-	circularList->last = NULL;
+	circularList->last->next = NULL;
 	freeList(circularList);
-	circularList = NULL;
 }
 
 //单循环链表功能测试
 void TestCircular() {
+	cout << "\n单循环链表功能测试" << endl;
 	linkedList circularList;
 	InitCircularLinkedList(&circularList);
-	addCircular(&circularList, 0, 'a');
+	char x = 'a';
+	cout << "向单循环链表中添加‘a-z’10个小写字母" << endl;
+	for (int i = 0; i < 10; i++) {
+		addCircular(&circularList, i, x);
+		x += 1;
+	}
+	printList(&circularList);
+	cout << "删除单循环链表中字母‘f’" << endl;
+	deleteCircular(&circularList, 'f');
+	printList(&circularList);
+	cout << "删除单循环链表中第5个元素" << endl;
+	deleteCircular(&circularList, 4);
+	printList(&circularList);
+	cout << "修改单循环链表中‘c’为‘C’" << endl;
+	changeCircular(&circularList, 'c', 'C');
+	printList(&circularList);
+	cout << "修改单循环链表中第4个元素为‘M’" << endl;
+	changeCircular(&circularList, 3, 'M');
+	printList(&circularList);
+	cout << "释放单循环链表空间，并删除单循环链表" << endl;
+	freeCircular(&circularList);
 	printList(&circularList);
 }
 
