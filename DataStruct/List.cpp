@@ -535,6 +535,7 @@ void printTwoList(twoLinkedList* twoList) {
 	cout << endl;
 }
 
+//释放双向链表所占用的存储空间
 void freeTwoList(twoLinkedList* twoList) {
 	twoNode* h = twoList->head;
 	twoNode* pre;

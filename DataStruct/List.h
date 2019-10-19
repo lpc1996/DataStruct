@@ -111,6 +111,8 @@ extern void deleteTwoList(twoLinkedList* twoList, char elem);
 extern void changeTwoList(twoLinkedList* twoList, int index, char elem);
 //把双向链表中值为oldElem的节点的值修改为newElem
 extern void changeTwoList(twoLinkedList* twoList, char oldElem, char newElem);
+//释放双向链表所占用的存储空间
+extern void freeTwoList(twoLinkedList* twoList);
 //双向链表功能测试
 extern void TestTwoList();
 #endif
