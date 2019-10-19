@@ -113,6 +113,8 @@ extern void changeTwoList(twoLinkedList* twoList, int index, char elem);
 extern void changeTwoList(twoLinkedList* twoList, char oldElem, char newElem);
 //释放双向链表所占用的存储空间
 extern void freeTwoList(twoLinkedList* twoList);
+//从双向链表中查找元素elem的位置
+extern int indexOfTwoList(twoLinkedList* twoList, char elem);
 //双向链表功能测试
 extern void TestTwoList();
 #endif

@@ -153,10 +153,12 @@
   <ItemGroup>
     <ClCompile Include="DataStruct.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStruct.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

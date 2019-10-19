@@ -510,18 +510,27 @@ void changeTwoList(twoLinkedList* twoList, int index, char elem) {
 //把双向链表中值为oldElem的节点的值修改为newElem
 void changeTwoList(twoLinkedList* twoList, char oldElem, char newElem) {
 	twoNode* h = twoList->head;
-	bool b = false;
-	while (h) {
-		if (h->elem == oldElem) {
-			h->elem = newElem;
-			b = true;
+	int index = indexOfTwoList(twoList, oldElem);
+	if (index == -1) {
+		cout << "本链表中没有找到值为：" << oldElem << "的元素节点" << endl;
+	}
+	else {
+		changeTwoList(twoList, index, newElem);
+	}
+}
+
+//在双向链表中查找元素elem的位置
+int indexOfTwoList(twoLinkedList* twoList, char elem) {
+	int index = -1;
+	twoNode* h = twoList->head;
+	for (int i = 0; i < twoList->size; i++) {
+		if (h->elem == elem) {
+			index = i;
 			break;
 		}
 		h = h->next;
 	}
-	if (!b) {
-		cout << "本链表中没有找到值为：" << oldElem << "的元素节点" << endl;
-	}
+	return index;
 }
 
 //打印双向链表中的元素到屏幕上
