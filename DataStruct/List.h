@@ -95,4 +95,22 @@ typedef struct _TwoLinkedList {
 	int size;
 }twoLinkedList;
 
+//双向链表基本操作实现
+
+//初始化双向链表
+extern void InitTwoList(twoLinkedList* twoList);
+//向双向链表中添加数据
+extern void addTwoList(twoLinkedList* twoList, char elem);
+//将双向链表中的数据打印在屏幕上
+extern void printTwoList(twoLinkedList* twoList);
+//删除双向链表中指定位置的元素节点
+extern void deleteTwoList(twoLinkedList* twoList, int index);
+//删除双向链表中指定值得元素节点
+extern void deleteTwoList(twoLinkedList* twoList, char elem);
+//把双向链表中index位置元素的值修改为elem
+extern void changeTwoList(twoLinkedList* twoList, int index, char elem);
+//把双向链表中值为oldElem的节点的值修改为newElem
+extern void changeTwoList(twoLinkedList* twoList, char oldElem, char newElem);
+//双向链表功能测试
+extern void TestTwoList();
 #endif

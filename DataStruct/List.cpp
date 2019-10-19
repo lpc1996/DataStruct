@@ -418,13 +418,159 @@ void InitTwoList(twoLinkedList* twoList) {
 	twoList->size = 0;
 }
 
+//向双向链表中添加数据
 void addTwoList(twoLinkedList* twoList,char elem) {
 	twoNode* p = (twoNode*)malloc(sizeof(twoNode));
+	p->elem = elem;
+	p->pre = NULL;
 	p->next = NULL;
-	if (twoList->head->next == NULL) {
-		twoList->head->next = p;
+	if (twoList->head == NULL) {
+		twoList->head = p;
 	}
-	p->pre = twoList->last;
+	else {
+		p->pre = twoList->last;
+		twoList->last->next = p;
+	}
 	twoList->last = p;
 	twoList->size++;
+}
+
+//删除双向链表中指定位置的节点删除
+void deleteTwoList(twoLinkedList* twoList,int index) {
+	twoNode* p = NULL;
+	if (index == 0) {
+		p = twoList->head;
+		twoList->head = p->next;
+		twoList->head->pre = NULL;
+	}
+	else if (index == twoList->size - 1) {
+		p = twoList->last;
+		twoList->last = twoList->last->pre;
+		twoList->last = NULL;
+	}
+	else if(index < 0 || index >= twoList->size ){
+		cout << "要删除的位置不合法，请检查输入！" << endl;
+		return;
+	}
+	else {
+		twoNode* h = twoList->head;
+		for (int i = 1; i < twoList->size-1; i++) {
+			if (index == i) {
+				p = h;
+				//twoNode* pre = h->pre
+				h->pre->next = h->next;
+			}
+			h = h->next;
+		}
+	}
+	free(p);
+	twoList->size--;
+}
+
+//删除双向链表中指定值的元素
+void deleteTwoList(twoLinkedList* twoList, char elem) {
+	twoNode* h = twoList->head;
+	twoNode* p;
+	while (h) {
+		if (h->elem == elem) {
+			p = h;
+			if (h == twoList->head) {
+				twoList->head = h->next;
+				twoList->head->pre = NULL;
+			}
+			else {
+				h->pre->next = h->next;
+			}
+			free(p);
+			twoList->size--;
+			break;
+		}
+		h = h->next;
+	}
+}
+
+//把双向链表中index位置元素的值修改为elem
+void changeTwoList(twoLinkedList* twoList, int index, char elem) {
+	if (index < 0 || index >= twoList->size) {
+		cout << "要修改的位置不合法，请检查输入！" << endl;
+		return;
+	}
+	else {
+		twoNode* h = twoList->head;
+		for (int i = 0; i < twoList->size; i++) {
+			if (index == i) {
+				h->elem = elem;
+				break;
+			}
+			h = h->next;
+		}
+	}
+}
+
+//把双向链表中值为oldElem的节点的值修改为newElem
+void changeTwoList(twoLinkedList* twoList, char oldElem, char newElem) {
+	twoNode* h = twoList->head;
+	bool b = false;
+	while (h) {
+		if (h->elem == oldElem) {
+			h->elem = newElem;
+			b = true;
+			break;
+		}
+		h = h->next;
+	}
+	if (!b) {
+		cout << "本链表中没有找到值为：" << oldElem << "的元素节点" << endl;
+	}
+}
+
+//打印双向链表中的元素到屏幕上
+void printTwoList(twoLinkedList* twoList) {
+	twoNode* h = twoList->head;
+	cout << "双向链表中有" << twoList->size << "个元素" << endl;
+	while (h != NULL) {
+		cout << h->elem << " ";
+		h = h->next;
+	}
+	cout << endl;
+}
+
+void freeTwoList(twoLinkedList* twoList) {
+	twoNode* h = twoList->head;
+	twoNode* pre;
+	while (h) {
+		pre = h;
+		h = h->next;
+		free(pre);
+	}
+	twoList->head = NULL;
+	twoList->last = NULL;
+	twoList->size = 0;
+}
+void TestTwoList() {
+	cout << "\n双向链表测试" << endl;
+	twoLinkedList twoList;
+	InitTwoList(&twoList);
+	cout << "向双向链表中添加10个字母" << endl;
+	char x = 'a';
+	for (int i = 0; i < 10; i++) {
+		addTwoList(&twoList, x);
+		x += 1;
+	}
+	printTwoList(&twoList);
+	cout << "删除双向链表中第5个元素" << endl;
+	deleteTwoList(&twoList, 4);
+	printTwoList(&twoList);
+	cout << "删除双向链表中‘f’元素" << endl;
+	deleteTwoList(&twoList, 'f');
+	printTwoList(&twoList);
+	cout << "把双向链表中第5个元素修改为M" << endl;
+	changeTwoList(&twoList, 4, 'M');
+	printTwoList(&twoList);
+	cout << "把双向链表中值为'c'的节点值修改为‘C'" << endl;
+	changeTwoList(&twoList, 'c', 'C');
+	printTwoList(&twoList);
+	cout << "释放双向链表所占用的存储空间" << endl;
+	freeTwoList(&twoList);
+	printTwoList(&twoList);
 }
