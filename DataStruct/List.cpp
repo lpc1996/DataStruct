@@ -557,6 +557,7 @@ void freeTwoList(twoLinkedList* twoList) {
 	twoList->last = NULL;
 	twoList->size = 0;
 }
+
 void TestTwoList() {
 	cout << "\n双向链表测试" << endl;
 	twoLinkedList twoList;
@@ -584,3 +585,7 @@ void TestTwoList() {
 	freeTwoList(&twoList);
 	printTwoList(&twoList);
 }
+
+//静态链表基本操作实现
+//静态链表初始化
+ 

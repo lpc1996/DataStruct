@@ -117,4 +117,19 @@ extern void freeTwoList(twoLinkedList* twoList);
 extern int indexOfTwoList(twoLinkedList* twoList, char elem);
 //双向链表功能测试
 extern void TestTwoList();
+
+//静态链表基本操作实现
+//静态链表节点设计
+typedef struct _Static_Node {
+	int data;
+	int next;
+}staticNode;
+
+//静态链表数据结构封装
+typedef struct _Static_List {
+	staticNode* node;
+	int length;
+	int size;
+}staticList;
+
 #endif
